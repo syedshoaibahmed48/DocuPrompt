@@ -1,0 +1,27 @@
+{
+  "usageLimits": {
+    "demo": {
+      "maxFiles": 2,
+      "maxPrompts": 15,
+      "maxStorage": 15728640,
+      "maxStorageInMB": "15",
+      "limitDuration": "Weekly"
+    },
+    "standard": {
+      "maxFiles": 20,
+      "maxPrompts": 300,
+      "maxStorage": 62914560,
+      "maxStorageInMB": "60",
+      "limitDuration": "Monthly"
+    },
+    "admin": {
+      "maxFiles": 20,
+      "maxPrompts": 300,
+      "maxStorage": 62914560,
+      "maxStorageInMB": "60",
+      "limitDuration": "Monthly"
+    }
+  },
+  "MAX_FILE_SIZE": 31457280,
+  "MAX_FILE_SIZE_InMB": 30
+}

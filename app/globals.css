@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 3.92%;
+  --secondary: 0 0% 9.02%;
+  --foreground: #ededed;
+  --secondary-foreground: #d4d4d4;
+  --radius: 8px;
+}
+
+/* Scrollbar styles for Webkit browsers (Chrome, Safari, newer versions of Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171717; /* neutral-800 */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #404040; /* neutral-600 */
+  border-radius: 6px;
+  border: 3px solid #171717; /* border color matching the track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #737373; /* neutral-500 */
+}
+
+/* Scrollbar styles for Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #404040 #171717; /* thumb and track color */
+}
+
+/* For Internet Explorer and Edge (pre-Chromium) */
+* {
+  -ms-overflow-style: none;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-outline {
+  @apply inline-block space-x-2 rounded-3xl text-white ring-2 ring-zinc-600 hover:bg-white hover:text-zinc-900 duration-150 hover:ring-white
+}
+
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-purple-600 to-blue-500
+}
+
+.word-document {
+  font-family: 'Calibri', 'Arial', sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  color: #0c0a0a;
+}
+.word-document h1 { font-size: 16pt; font-weight: bold; margin-top: 24pt; margin-bottom: 6pt; }
+.word-document h2 { font-size: 14pt; font-weight: bold; margin-top: 18pt; margin-bottom: 6pt; }
+.word-document h3 { font-size: 12pt; font-weight: bold; margin-top: 14pt; margin-bottom: 4pt; }
+.word-document p { margin-bottom: 10pt; }
+.word-document ul, .word-document ol { margin-left: 20pt; margin-bottom: 10pt; }
+.word-document table { border-collapse: collapse; margin-bottom: 10pt; }
+.word-document td, .word-document th { border: 1px solid #ccc; padding: 5pt; }
+
+.text-document {
+  font-family: 'Calibri', 'Arial', sans-serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: #0c0a0a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}  

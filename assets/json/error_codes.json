@@ -1,0 +1,58 @@
+{
+    "SERVER_ERROR": {
+        "title": "Server Error",
+        "message": "An unexpected error occurred on the server. Please try again later."
+    },
+    "FILE_ACCESS_DENIED": {
+        "title": "Access Denied",
+        "message": "This file doesn't belong to you. Please ensure you are logged in with the correct account."
+    },
+    "LLM_RESPONSE_ERROR": {
+        "title": "LLM Response Error",
+        "message": "The AI could not process your request. This may be due to an internal issue or malformed input."
+    },
+    "PROMPTS_LIMIT_REACHED": {
+        "title": "Prompts Limit Reached",
+        "message": "You have reached the maximum number of prompts allowed for your current plan or session."
+    },
+    "FILE_NOT_FOUND": {
+        "title": "File Not Found",
+        "message": "The requested file could not be found. It may have been removed or the URL is incorrect."
+    },
+    "USER_NOT_FOUND": {
+        "title": "User Not Found",
+        "message": "No account found with this username or email."
+    },
+    "INCORRECT_PASSWORD": {
+        "title": "Incorrect Password",
+        "message": "Incorrect password. Try again."
+    },
+    "USERNAME_ALREADY_EXISTS": {
+        "title": "Username Already Exists",
+        "message": "Choose a different username."
+    },
+    "EMAIL_ALREADY_EXISTS": {
+        "title": "Email Already Exists",
+        "message": "An account with this email already exists."
+    },
+    "UNAUTHORIZED_ACCESS": {
+        "title": "Unauthorized Access",
+        "message": "You don’t have permission to access this resource."
+    },
+    "TOO_MANY_REQUESTS": {
+        "title": "Too Many Requests",
+        "message": "You have made too many requests in a short period. Please try again later."
+    },
+    "FILE_TOO_LARGE": {
+        "title": "File Too Large",
+        "message": "Max file size is 30 MB. Upload a smaller file."
+    },
+    "NO_FILE_IN_PAYLOAD": {
+        "title": "No File Found",
+        "message": "No file was found in the request."
+    },
+    "TEXT_EXTRACTION_FAILED": {
+        "title": "Text Extraction Failed",
+        "message": "No text could be extracted from the file. Ensure the text in the file is selectable."
+    }
+}

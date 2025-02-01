@@ -1,0 +1,6 @@
+{
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "Word Document (docx)",
+    "application/msword": "Word Document (doc)",
+    "text/plain": "Text Document (txt)",
+    "application/pdf": "PDF Document (pdf)"
+}
