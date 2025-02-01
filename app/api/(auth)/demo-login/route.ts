@@ -15,7 +15,12 @@ export async function POST(request: NextRequest){
 
         // return token in cookies
         const response = NextResponse.json({ success: true }, { status: 201 });
-        response.cookies.set("AuthToken", authToken, { httpOnly: true });
+        response.cookies.set("AuthToken", authToken, { 
+            httpOnly: true,
+            secure: true,        
+            sameSite: "strict",
+            path: "/"
+         });
         return response
     } catch (error) {
         console.error(error);

@@ -4,7 +4,13 @@ export async function GET() {
     try {
         // return token in cookies
         const response = NextResponse.json({ success: true }, { status: 200 });
-        response.cookies.set("AuthToken", "", { httpOnly: true });
+        response.cookies.set("AuthToken", "", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            path: "/",
+            maxAge: 0, // Immediately expires the cookie
+        });
         return response;
     } catch (error) {
         console.error(error);

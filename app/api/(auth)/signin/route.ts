@@ -21,7 +21,12 @@ export async function POST(request: NextRequest) {
 
         // return token in cookies
         const response = NextResponse.json({ success: true }, { status: 200 });
-        response.cookies.set("AuthToken", authToken, { httpOnly: true });
+        response.cookies.set("AuthToken", authToken, {
+            httpOnly: true,      // Prevents access to the cookie via JavaScript (protects against XSS)
+            secure: true,        // Ensures the cookie is only sent over HTTPS
+            sameSite: "strict",  // Prevents CSRF by restricting cross-site cookie usage
+            path: "/",          //  Ensures the cookie is available for the entire domain
+        });
         return response
     } catch (error) {
         console.error(error);
