@@ -30,7 +30,7 @@ export default function Home() {
         <HeroSection />
       </section>
       <section id="features" className="flex flex-col">
-          <FeaturesSection />
+        <FeaturesSection />
       </section>
       <section>
         <Footer />
