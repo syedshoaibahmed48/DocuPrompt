@@ -14,18 +14,29 @@ const optimizedPromptTemplate = PromptTemplate.fromTemplate(`I want you to trans
 
 """{prompt}"""`);
 
-const contextualPromptTemplate = PromptTemplate.fromTemplate(`You are an intelligent AI assistant helping users analyze and understand their uploaded documents. Below is the relevant information from the user's uploaded file: {filename}. Your task is to:
-- Respond **briefly** and **directly** to the user's prompt provided in triple quotes.
-- Use the given context and chat history to provide the most relevant and specific information from the file.
-- Avoid generic or vague responses.
-- If {filename} does not have sufficient information to answer the prompt, politely inform the user.
+const contextualPromptTemplate = PromptTemplate.fromTemplate(`You are a specialized AI assistant focused on document analysis and information retrieval. You have been provided with relevant context from: {filename}
 
-User: """{prompt}"""
-
-Context:
-1. {context1}
-2. {context2}
-3. {context3}`)
+  Your Core Responsibilities:
+  1. Answer the user's prompt provided in triple quotes using ONLY information present in the given context.
+  2. If the required information is not in the document, politely inform the user.
+  3. If required, cite specific sections/quotes from the document to support your answers
+  4. Maintain the document's original terminology and context
+  
+  Guidelines for Responses:
+  - Scale your response length and depth based on the prompt's complexity
+  - Start with a direct answer to the user prompt
+  - Use bullet points only when listing multiple items
+  - Keep responses concise (1-2 paragraphs maximum)
+  - Offer to clarify technical terms if they appear in the response
+  
+  Retrieved Context:
+  {context1}
+  {context2}
+  {context3}
+  
+  User Prompt: """{prompt}""""
+  
+  Remember: Your knowledge is limited to the provided document. Do not introduce external information or make assumptions beyond what is explicitly stated in the context.`)
 
 export async function splitText2Chunks(text: string) {
   const textSplitter = new RecursiveCharacterTextSplitter({
