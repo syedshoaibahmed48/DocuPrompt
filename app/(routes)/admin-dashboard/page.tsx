@@ -81,8 +81,10 @@ export default function AdminDashboard() {
     }
 
     async function handleSignout() {
-        await signout();
-        router.push('/');
+        const response = await signout();
+        if (response.success) {
+            router.push("/");
+        }
     }
 
     const handleCopyCredentials = () => {
@@ -329,6 +331,9 @@ export default function AdminDashboard() {
                                     <th scope="col" className="px-6 py-3">
                                         Comments
                                     </th>
+                                    <th scope="col" className="px-6 py-3 text-center">
+                                        Request Date
+                                    </th>
                                     <th scope="col" className="flex flex-row justify-center px-6 py-3">
                                         Actions
                                     </th>
@@ -345,6 +350,7 @@ export default function AdminDashboard() {
                                                     {request.comments || 'no comments'}
                                                 </div>
                                             </td>
+                                            <td className="px-6 py-4 text-center">{request.requestDate}</td>
                                             <td className="flex flex-row justify-center py-2">
                                                 <Button onClick={() => handleGrantRequestedAccess(request.name, request.email)} className="bg-neutral-800 hover:bg-neutral-700 mr-2">
                                                     Grant Access

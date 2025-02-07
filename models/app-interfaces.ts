@@ -80,6 +80,7 @@ export interface StandardAccessRequest extends Document {
   name: string;
   email: string;
   comments: string;
+  requestDate: string;
 }
 
 export interface FileMetaData {

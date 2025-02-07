@@ -148,8 +148,8 @@ export default function UploadedFilesTable({
                     </svg>
                   </td>}
                   <td className="px-6 py-2 text-center">
-                    <Link href={`/files/${fileId}/chat`}>
-                      <Button variant="link" onClick={() => {}}>
+                    <Link  href={`/files/${fileId}/chat`}>
+                      <Button variant="outline" className="hover:bg-neutral-300 hover:text-black rounded-full font-semibold hover:scale-110">
                         Chat
                         <ChevronRightIcon className="h-4 w-4" />
                       </Button>

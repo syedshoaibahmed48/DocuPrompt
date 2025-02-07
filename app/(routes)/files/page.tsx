@@ -78,8 +78,10 @@ export default function FileUploadPage() {
   }
 
   async function handleSignout() {
-    await signout();
-    router.push('/');
+    const response = await signout();
+    if(response.success){
+      router.push("/");
+    }
   }
 
   useEffect(() => {

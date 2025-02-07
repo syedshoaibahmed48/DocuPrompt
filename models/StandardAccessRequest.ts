@@ -11,7 +11,7 @@ const standardAccessRequestSchema = new mongoose.Schema<StandardAccessRequest>({
     comments: {
         type: String
     }
-}, { collection: "standardaccessrequest" });
+}, { collection: "standardaccessrequest", timestamps: true });
 
 const StandardAccessRequest = mongoose.models.standardaccessrequest || mongoose.model<StandardAccessRequest>("standardaccessrequest", standardAccessRequestSchema);
 

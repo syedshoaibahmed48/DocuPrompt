@@ -236,7 +236,17 @@ export const updateChat = withMongoDBConnection(async function updateChat(fileId
 });
 
 export const getAllStandardAccessRequests = withMongoDBConnection(async function getAllStandardAccessRequests() {
-    return await StandardAccessRequest.find({}, { _id: 0, name: 1, email: 1, comments: 1 });
+    return await StandardAccessRequest.aggregate([
+        {
+            $project: {
+                _id: 0,
+                name: 1,
+                email: 1,
+                comments: 1,
+                requestDate: { $dateToString: { format: "%d/%m/%Y", date: "$createdAt" } }
+            }
+        }
+    ]).exec();
 })
 
 export const getStandardAccessRequestByEmail = withMongoDBConnection(async function getStandardAccessRequestByEmail(email: string) {
