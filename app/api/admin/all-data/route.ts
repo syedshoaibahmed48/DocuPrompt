@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { getFirebaseStorageUsageStats } from "@/lib/firebaseClient";
 import { getAllStandardAccessRequests, getAllUsers, getUsersAggregatedByType } from "@/lib/mongodbClient";
 import { getPineconeStorageUsageStats } from "@/lib/pineconeClient";
