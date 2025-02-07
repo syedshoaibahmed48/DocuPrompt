@@ -28,7 +28,7 @@ export default function UsageStatsCards({usageStats, userType}: {usageStats: Usa
             </button>
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            <p>files will be deleted by next Monday at 00:00 UTC.</p>
+            <p>Files will be deleted by next Monday at 00:00 UTC.</p>
           </TooltipContent>
         </Tooltip>
         <div className="flex flex-col px-4 py-1 bg-neutral-900 rounded-lg border border-neutral-600 gap-y-2">
@@ -55,7 +55,7 @@ export default function UsageStatsCards({usageStats, userType}: {usageStats: Usa
             </button>
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            <p>{userType === 'demo' ? 'Resets every Monday at 00:00 UTC.' : 'Resets on the 1st of every month at 00:00 UTC'}</p>
+            <p>Resets every Monday at 00:00 UTC.</p>
           </TooltipContent>
         </Tooltip>
         <div className="flex flex-col px-4 py-1 bg-neutral-900 rounded-lg border border-neutral-600 gap-y-2">

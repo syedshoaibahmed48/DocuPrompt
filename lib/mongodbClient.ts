@@ -175,12 +175,64 @@ export const getFileById = withMongoDBConnection(async function getFileById(file
     return await FileMetaData.findById(fileId);
 });
 
+export const getAllDemoUserFiles = withMongoDBConnection(async function getAllDemoUserFiles() {
+    return await FileMetaData.aggregate([
+        {
+          $addFields: {
+            userIdAsObjectId: { $toObjectId: "$userId" }
+          }
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "userIdAsObjectId",
+            foreignField: "_id",
+            as: "user"
+          }
+        },
+        {
+          $unwind: "$user"
+        },
+        {
+          $match: {
+            "user.userType": "demo" // Only users with type "demo"
+          }
+        },
+        {
+          $project: {
+            _id: 0,         // Exclude MongoDB's default _id field
+            fileId: "$_id", // Rename _id to fileId
+            filename: "$name",         // Keep file name
+            userId: 1
+          }
+        }
+      ]);      
+})
+
+export const resetPromptsUsed = withMongoDBConnection(async function resetPromptsUsed() {
+    return await FileMetaData.updateMany({}, { $set: { promptsUsed: 0 } })
+})
+
 export const deleteFileById = withMongoDBConnection(async function deleteFileById(fileId: string) {
-    return await FileMetaData.findByIdAndDelete(fileId);
+    try {
+        return await FileMetaData.findByIdAndDelete(fileId);
+    } catch (error) {
+        console.error(`Error deleting file by id: ${fileId}`, error);
+    }
 });
 
+export const deleteFileMetaDatas = withMongoDBConnection(async function deleteFiles(fileIds: string[]) {
+    for (const fileId of fileIds) {
+        try {
+            await FileMetaData.findByIdAndDelete(fileId);
+        } catch (error) {
+            console.error(`Error deleting file by id: ${fileId}`, error);
+        }
+    }
+})
+
 export const updateChat = withMongoDBConnection(async function updateChat(fileId: string, chat: LLMChatMessage[]) {
-    return await FileMetaData.findByIdAndUpdate(fileId, { chat, promptsUsed: chat.length / 2 });
+    return await FileMetaData.findByIdAndUpdate(fileId, { $set: { chat }, $inc: { promptsUsed: 1 } });
 });
 
 export const getAllStandardAccessRequests = withMongoDBConnection(async function getAllStandardAccessRequests() {

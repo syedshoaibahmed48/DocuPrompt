@@ -86,12 +86,17 @@ export interface FileMetaData {
   fileId?: string;
   name: string;
   size?: number;
-  type: string;
+  type?: string;
   uploadDate?: string;
-  promptsUsed: number;
+  promptsUsed?: number;
   maxPrompts?: number;
   fileContent?: string;
   chat?: LLMChatMessage[]
+}
+
+export interface FileDetails {
+  userId: string;
+  filename: string;
 }
 
 export interface UserFiles {

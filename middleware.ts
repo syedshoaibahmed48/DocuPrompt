@@ -3,13 +3,14 @@ import { getUserDetailsfromJWT } from '@/lib/JwtUtils';
 
 
 const isAdminPath = (path: string) => path.startsWith('/api/admin') || path === "/admin-dashboard";
-const isProtectedPath = (path: string) => ["/api/signout","/api/chat","/api/me"].includes(path) || path.startsWith('/files') || path.startsWith("/api/file");
+const isProtectedPath = (path: string) => ["/api/signout", "/api/chat", "/api/me"].includes(path) || path.startsWith('/files') || path.startsWith("/api/file");
 const isAPIPath = (path: string) => path.startsWith('/api');
-const requiresAuth = (path: string) => isProtectedPath(path) || isAdminPath(path);
+const isCronJobPath = (path: string) => path === '/api/cron';
+const requiresAuth = (path: string) => isProtectedPath(path) || isAdminPath(path) || isCronJobPath(path);
 
 export const config = {
   matcher: [
-    '/', '/unauthorized', '/request-access', '/signin', '/files', '/files/:fileId/chat', '/admin-dashboard', '/api/demo-login', '/api/request-access', '/api/signin', '/api/signout', '/api/chat', '/api/me', '/api/file', '/api/file/:fileId*', '/api/admin/all-data', '/api/admin/access-request', '/api/admin/access-request/:email*'
+    '/', '/unauthorized', '/request-access', '/signin', '/files', '/files/:fileId/chat', '/admin-dashboard', '/api/demo-login', '/api/request-access', '/api/signin', '/api/signout', '/api/chat', '/api/me', '/api/file', '/api/file/:fileId*', '/api/admin/all-data', '/api/admin/access-request', '/api/admin/access-request/:email*', '/api/cron'
   ]
 }
 
@@ -28,7 +29,10 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('AuthToken')?.value;
 
   if (requiresAuth(path)) {
-    if (!token) return handleUnauthorizedResponse(request, path);
+    if (!token){// if is cronjob path then check authentication header, else send 401
+      if (isCronJobPath(path) && request.headers.get('authorization') === `Bearer ${process.env.CRON_SECRET}`)  return NextResponse.next();
+      else  return handleUnauthorizedResponse(request, path);
+    }
 
     const { userId, userType } = getUserDetailsfromJWT(token!);
 

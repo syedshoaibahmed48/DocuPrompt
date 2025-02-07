@@ -13,7 +13,7 @@ Check out DocuPrompt **[here](https://docuprompt.vercel.app/)** .
 - 📂 **AI-Powered File Chat** – Upload files and chat with AI for instant insights.  
 - 📑 **Multi-Format Support** – Supports PDF, Word, and plain text files.  
 - ⚡ **Retrieval-Augmented Generation (RAG)** – Enhances AI responses with file-based context.  
-- 🔄 **Automated Usage Limits** – Cron jobs reset user limits on a weekly and monthly basis.  
+- 🔄 **Automated Usage Limits** – Cron jobs reset user limits on a weekly basis.  
 
 ## **API Integrations**  
 - **OpenAI API** – AI-powered chat and document insights.  

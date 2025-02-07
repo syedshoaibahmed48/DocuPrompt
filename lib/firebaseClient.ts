@@ -1,4 +1,5 @@
 import { storage } from "@/configs/firebase.config";
+import { FileDetails } from "@/models/app-interfaces";
 import { deleteObject, getBytes, getMetadata, listAll, ref } from "@firebase/storage";
 import { Buffer } from "buffer";
 
@@ -13,7 +14,23 @@ export async function getFileBufferAndDetails(userId: string, filename: string) 
 
 export async function deleteFileFromFirebase(userId: string, filename: string) {
     const fileStorageRef = ref(storage, `${process.env.FIREBASE_STORAGE_DIR}/${userId}/${filename}`);
-    await deleteObject(fileStorageRef);
+    try {
+        await deleteObject(fileStorageRef);
+    } catch (error) {
+        console.error(`Failed to delete file ${filename} for user ${userId}:`, error);
+    }
+}
+
+export async function deleteFilesFromFirebase(files: FileDetails[]) {
+    for (const file of files) {
+        const { userId, filename } = file;
+        const fileStorageRef = ref(storage, `${process.env.FIREBASE_STORAGE_DIR}/${userId}/${filename}`);
+        try {
+            await deleteObject(fileStorageRef);
+        } catch (error) {
+            console.error(`Failed to delete file ${filename} for user ${userId}:`, error);
+        }
+    }
 }
 
 export async function getFirebaseStorageUsageStats() {

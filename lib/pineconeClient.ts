@@ -22,6 +22,22 @@ export async function getSimiliarDocuments(prompt: string, fileId: string) {
 }
 
 export async function deleteDocumentFromVectorStore(fileId: string) {
-    const vectorStore = await getVectorStore(fileId);
-    return await vectorStore.delete({ deleteAll: true });
+    try {
+        const vectorStore = await getVectorStore(fileId);
+        return await vectorStore.delete({ deleteAll: true });
+    } catch (error) {
+        console.error(`Error deleting namespace ${fileId}:`, error);
+    }
+}
+
+export async function deleteNamespaces(namespaceIds: string[]) {
+    for (const namespaceId of namespaceIds) {
+        try {
+            const vectorStore = await getVectorStore(namespaceId);
+            await vectorStore.delete({ deleteAll: true });
+        } catch (error) {
+            console.error(`Error deleting namespace ${namespaceId}:`, error);
+            continue;
+        }
+    }
 }

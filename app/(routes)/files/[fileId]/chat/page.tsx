@@ -64,10 +64,10 @@ export default function ChatPage() {
         setResponseLoading(false);
         setFileMetaData({
           ...fileMetaData,
-          promptsUsed: fileMetaData.promptsUsed + 1
+          promptsUsed: (fileMetaData.promptsUsed ?? 0) + 1
         });
       }, 1000);
-      if(fileMetaData.promptsUsed + 1 >= fileMetaData.maxPrompts!) throw new Error('PROMPTS_LIMIT_REACHED');
+      if((fileMetaData.promptsUsed ?? 0) + 1 >= fileMetaData.maxPrompts!) throw new Error('PROMPTS_LIMIT_REACHED');
     } catch (error) {
       if(error instanceof Error) setError(error.message);
     }
@@ -87,7 +87,7 @@ export default function ChatPage() {
             <div className="w-full bg-neutral-700 rounded-sm h-1 mb-4">
               <div
                 className="bg-neutral-400 h-full rounded-sm"
-                style={{ width: `${calcStatPercentage(fileMetaData?.promptsUsed, fileMetaData?.maxPrompts || 1)}%` }}
+                style={{ width: `${calcStatPercentage(fileMetaData?.promptsUsed || 0, fileMetaData?.maxPrompts || 1)}%` }}
               ></div>
               <span className="text-sm text-nowrap text-neutral-400">{`Used: ${fileMetaData?.promptsUsed} / ${fileMetaData?.maxPrompts} `}</span>
             </div>

@@ -12,14 +12,14 @@
       "maxPrompts": 300,
       "maxStorage": 62914560,
       "maxStorageInMB": "60",
-      "limitDuration": "Monthly"
+      "limitDuration": "Weekly"
     },
     "admin": {
       "maxFiles": 20,
       "maxPrompts": 300,
       "maxStorage": 62914560,
       "maxStorageInMB": "60",
-      "limitDuration": "Monthly"
+      "limitDuration": "Weekly"
     }
   },
   "MAX_FILE_SIZE": 31457280,
